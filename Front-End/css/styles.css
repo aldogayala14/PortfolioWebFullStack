@@ -1,0 +1,214 @@
+body{
+    padding: 1em;
+}
+
+.portada{   
+    height: 450px;
+    width: 100%;
+    background-image: url(../images/header.jpg);
+    background-size: cover;
+    position: relative;    
+}
+
+.foto{
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+    background-color: crimson;    
+    margin: 375px 3em 3em; 
+    position: absolute;
+}
+
+.editar_foto{   
+    position: absolute;    
+    margin: 500px 13em 5em;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 30px;
+    width: 30px;
+}
+
+#nombre_usuario{
+    margin-top: 85px;       
+    margin-bottom: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;   
+    font-size: 1.5em; 
+}
+
+.descripcion{
+    margin-left: 2.5em;  
+    margin-top: 0px;  
+    margin-bottom: 0px;
+}
+
+.descripcion p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+}
+
+.descripcion ul{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.info_contacto{
+    padding: 0px;         
+    margin-top: 0px;  
+    margin-bottom: 0px;      
+}
+
+
+.info_contacto li{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.nav-bar ul li{
+    float: left;
+    list-style-type: none;  
+    
+}
+
+.nav-bar ul li button{
+     margin-right: 0.4rem;        
+}
+
+.logo_right{    
+    padding: 2em;     
+}
+
+.logo_right ul{
+    padding: 1em;
+}
+
+.logo_right ul li{        
+   float: left;
+   list-style-type: none;  
+}
+
+.img-logo-desc{
+    width: 50px;
+    height: 50px;
+}
+
+.li_arg{   
+    font-weight: bold;
+    margin: 0.5em;
+}
+
+.head_group{
+    padding-bottom: 3em;
+    background-color: ghostwhite;    
+    border-radius: 1%;
+}
+
+.div_editar{
+    padding: 1em;
+    text-align: right;
+}
+
+.edit{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 20px;
+    width: 20px;
+}
+.acerca{    
+    margin-top: 1em;
+    background-color: ghostwhite;    
+    border-radius: 1%;
+    padding: 1em;
+}
+
+.experiencia{
+    margin-top: 1em;
+    background-color: ghostwhite;    
+    border-radius: 1%;
+    padding: 1em;
+}
+
+.descripcion-experiencia h5{
+    margin: 0px;
+}
+
+.descripcion-experiencia p{
+    margin: 0px;
+}
+
+.add{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 20px;
+    width: 20px;
+}
+
+.delete{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 20px;
+    width: 20px;
+}
+
+.div_add{
+    padding: 1em;
+    text-align: right;
+}
+
+.div_deladd{
+    padding: 1em;
+    text-align: right;
+}
+
+.div_deladd ul li{
+    list-style-type: none;
+    float:right;
+    margin-top: 0px;
+   margin-left: 0.5rem;
+}
+
+
+.educacion{
+    margin-top: 1em;
+    background-color: ghostwhite;    
+    border-radius: 1%;
+    padding: 1em;
+}
+
+.contenedor-educacion div{
+    margin-top: 1em;;
+}
+
+
+.div-footer{
+    margin-top: 1em;
+    background-color: ghostwhite;    
+    border-radius: 1%;
+    padding: 1em;   
+    text-align: center;
+    
+}
+
+.div-footer div div ul {
+    display:inline-block;   
+}
+
+.div-footer div ul li{
+    list-style-type: none;
+    padding: 1em;
+    float: left;
+      
+}
+
+
+
+.img-footer{
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+
+
+
