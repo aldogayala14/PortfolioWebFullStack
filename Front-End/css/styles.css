@@ -2,6 +2,20 @@ body{
     padding: 1em;
 }
 
+@media screen and (max-width: 600px) {
+    .img-login {
+      display: none;
+    }
+
+  }
+
+@media screen  and (min-width: 800px) {
+    .img-logo-responsive{
+        width: 8em;
+        height: 8em;
+    }
+}
+
 .portada{   
     height: 450px;
     width: 100%;
@@ -76,17 +90,30 @@ body{
      margin-right: 0.4rem;        
 }
 
-.logo_right{    
+#logo_right{    
     padding: 2em;     
 }
 
-.logo_right ul{
+#logo_right ul{
     padding: 1em;
 }
 
-.logo_right ul li{        
+#logo_arg ul li{        
    float: left;
    list-style-type: none;  
+}
+
+#login ul li{
+    float: right;
+    list-style-type: none;
+    padding: auto;
+    margin: 0.5em;
+}
+
+
+.img-login{
+    width: 2.3em;
+    height: 2.3em;
 }
 
 .img-logo-desc{
@@ -96,6 +123,7 @@ body{
 
 .li_arg{   
     font-weight: bold;
+    margin-top: 1em;
     margin: 0.5em;
 }
 
@@ -175,7 +203,7 @@ body{
 }
 
 .contenedor-educacion div{
-    margin-top: 1em;;
+    margin-top: 10px;
 }
 
 
@@ -207,8 +235,65 @@ body{
 }
 
 
+.img-logo{
+    width: 8em;
+    height: 6em;
+}
 
 
 
+.container-progress{
+    margin: 1em;
+    height: 150px;
+    width: 150px;
+    background-color: #ffffff;
+    border-radius: 8px;   
+    box-shadow: 5px 5px 10px rgba(146, 142, 142, 0.808); 
+    display: grid;
+    place-items: center;
+}
 
 
+.circular-progress{
+    position: relative;
+    height: 90px;
+    width: 90px;
+    background-color: orange;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.circular-progress::before{
+    content: "";
+    position: absolute;
+    height: 84%;
+    width: 84%;
+    background-color: #ffffff;
+    border-radius: 50%;
+
+}
+
+.value-container{
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 80%;
+    color: #231c3d;
+}
+
+.value-skill{
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    font-size: 80%;
+    font-weight: bold;
+    color: #231c3d;
+}
+
+
+.proyectos{
+    margin-top: 1em;
+    background-color: ghostwhite;    
+    border-radius: 1%;
+    padding: 1em;
+}
