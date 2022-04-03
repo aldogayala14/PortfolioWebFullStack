@@ -20,4 +20,8 @@ public class LanguageEntity {
     private String name;
     private String level;
 
+    @ManyToOne
+    @JoinColumn(name="person_id", nullable=false)
+    private PersonEntity personLanguage;
+
 }

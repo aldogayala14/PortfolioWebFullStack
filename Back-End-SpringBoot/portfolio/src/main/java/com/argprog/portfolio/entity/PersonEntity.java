@@ -55,6 +55,9 @@ public class PersonEntity {
     @OneToMany(mappedBy = "personProject")
     private Set<ProjectEntity> projects = new HashSet<>();
 
+    @OneToMany(mappedBy = "personLanguage")
+    private Set<LanguageEntity> languages = new HashSet<>();
+
 
     //Add and remove HashSet items
     private void addResidence(ResidenceEntity residence){
@@ -96,6 +99,14 @@ public class PersonEntity {
 
     private void removeProject(ProjectEntity project){
         this.projects.remove(project);
+    }
+
+    private void addLanguage(LanguageEntity language){
+        this.languages.add(language);
+    }
+
+    private void removeLanguage(LanguageEntity language){
+        this.languages.remove(language);
     }
 
 }

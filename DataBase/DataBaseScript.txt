@@ -78,7 +78,10 @@ CREATE TABLE `languages` (
   `id` bigint NOT NULL,
   `level` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `person_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKjuihcx8crcn24a8n1e92re8d9` (`person_id`),
+  CONSTRAINT `FKjuihcx8crcn24a8n1e92re8d9` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `projects` (

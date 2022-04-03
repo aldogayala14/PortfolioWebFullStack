@@ -22,7 +22,7 @@ public class EducationEntity {
     private String image;
     private String career;
     private String status;
-    private String qualification;
+    private double qualification;
     private String careerStart;
     private String careerEnd;
 
