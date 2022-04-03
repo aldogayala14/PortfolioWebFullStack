@@ -1,0 +1,102 @@
+CREATE DATABASE `portfolio` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `persons` (
+  `id` bigint NOT NULL,
+  `about_me` varchar(255) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `image_background_header` varchar(255) DEFAULT NULL,
+  `image_profile` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `nationality` varchar(255) DEFAULT NULL,
+  `occupation` varchar(255) DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKrp309masjisdm7mmqon63obpv` (`user_id`),
+  CONSTRAINT `FKrp309masjisdm7mmqon63obpv` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `residences` (
+  `id` bigint NOT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `street_numbering` varchar(255) DEFAULT NULL,
+  `person_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKssfcetxy504dme15045f0i7aw` (`person_id`),
+  CONSTRAINT `FKssfcetxy504dme15045f0i7aw` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+
+CREATE TABLE `work_experiences` (
+  `id` bigint NOT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `observations` varchar(255) DEFAULT NULL,
+  `occupation` varchar(255) DEFAULT NULL,
+  `occupation_end` varchar(255) DEFAULT NULL,
+  `occupation_start` varchar(255) DEFAULT NULL,
+  `person_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKtn3ujxqqcfnkgub856gsu0293` (`person_id`),
+  CONSTRAINT `FKtn3ujxqqcfnkgub856gsu0293` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `educations` (
+  `id` bigint NOT NULL,
+  `career` varchar(255) DEFAULT NULL,
+  `career_end` varchar(255) DEFAULT NULL,
+  `career_start` varchar(255) DEFAULT NULL,
+  `college` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `qualification` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `person_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK6ouq5aatwkt1cgmfqmx681vse` (`person_id`),
+  CONSTRAINT `FK6ouq5aatwkt1cgmfqmx681vse` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `technologies` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `percentage_knowledge` int NOT NULL,
+  `person_id` bigint NOT NULL,
+  `project_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK38x36f0u2ax18wq8obdvg5o29` (`person_id`),
+  KEY `FKh06vk232usf21mwg2p8gg6hwu` (`project_id`),
+  CONSTRAINT `FK38x36f0u2ax18wq8obdvg5o29` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FKh06vk232usf21mwg2p8gg6hwu` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `languages` (
+  `id` bigint NOT NULL,
+  `level` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `projects` (
+  `id` bigint NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `project_end` varchar(255) DEFAULT NULL,
+  `project_start` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `person_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKm78jiqmupp0w89oppfjd6ri72` (`person_id`),
+  CONSTRAINT `FKm78jiqmupp0w89oppfjd6ri72` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `users` (
+  `id` bigint NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
