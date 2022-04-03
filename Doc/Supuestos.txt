@@ -1,0 +1,3 @@
+Documento de supuestos del sistema:
+
+1 - Una persona solo puede tener una sola direccion.

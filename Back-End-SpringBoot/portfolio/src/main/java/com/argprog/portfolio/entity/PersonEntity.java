@@ -36,8 +36,9 @@ public class PersonEntity {
     private String imageBackgroundHeader;
     private String imageProfile;
 
-    @OneToMany(mappedBy = "person")
-    private Set<ResidenceEntity> residences= new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "residence_id", referencedColumnName = "id")
+    private ResidenceEntity residence;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -60,15 +61,6 @@ public class PersonEntity {
 
 
     //Add and remove HashSet items
-    private void addResidence(ResidenceEntity residence){
-        this.residences.add(residence);
-    }
-
-    private void removeResidence(ResidenceEntity residence){
-        this.residences.remove(residence);
-    }
-
-
     private void addWorkExperiencie(WorkExperienceEntity workExperience){
         this.workExperiences.add(workExperience);
     }

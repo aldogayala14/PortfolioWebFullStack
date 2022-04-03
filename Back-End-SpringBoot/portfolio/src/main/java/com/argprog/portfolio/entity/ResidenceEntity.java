@@ -19,8 +19,7 @@ public class ResidenceEntity {
     private String state;
     private String country;
 
-    @ManyToOne
-    @JoinColumn(name="person_id", nullable=false)
+    @OneToOne(mappedBy = "residence")
     private PersonEntity person;
 
 }
