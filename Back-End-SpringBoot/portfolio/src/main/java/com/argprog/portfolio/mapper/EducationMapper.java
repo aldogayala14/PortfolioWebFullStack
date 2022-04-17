@@ -3,12 +3,18 @@ package com.argprog.portfolio.mapper;
 import com.argprog.portfolio.dto.EducationDTO;
 import com.argprog.portfolio.entity.EducationEntity;
 import net.bytebuddy.asm.Advice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class EducationMapper {
+
+    @Autowired
+    private  PersonMapper personMapper;
 
  public EducationEntity educationDTO2Entity(EducationDTO educationDTO){
      EducationEntity entity = new EducationEntity();
@@ -20,8 +26,7 @@ public class EducationMapper {
      entity.setQualification(educationDTO.getQualification());
      entity.setStatus(educationDTO.getStatus());
      entity.setTitle(educationDTO.getTitle());
-     //TODO : mapper Education convert DTO2Entity
-     //entity.setPersonEducation(educationDTO.getPersonEducation());
+     entity.setPersonEducation(personMapper.personDTO2Entity(educationDTO.getPersonEducation()));
      return entity;
  }
 
@@ -36,8 +41,25 @@ public class EducationMapper {
      educationDTO.setImage(entity.getImage());
      educationDTO.setStatus(entity.getStatus());
      educationDTO.setQualification(entity.getQualification());
-     // TODO: Ver conversion
-     //educationDTO.setPersonEducation(entity.getPersonEducation());
+     educationDTO.setPersonEducation(personMapper.personEntity2DTO(entity.getPersonEducation()));
      return educationDTO;
+ }
+
+
+ public List<EducationDTO> educationEntity2DTOList(List<EducationEntity> entities){
+     List<EducationDTO> dtos = new ArrayList<>();
+     for(EducationEntity entity : entities){
+         dtos.add(this.educationEntity2DTO(entity));
+     }
+
+     return dtos;
+ }
+
+ public List<EducationEntity> educationDTO2EntityList(List<EducationDTO> dtos){
+     List<EducationEntity> entities = new ArrayList<>();
+     for(EducationDTO dto : dtos){
+         entities.add(this.educationDTO2Entity(dto));
+     }
+     return entities;
  }
 }
