@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "languages")
@@ -20,8 +22,9 @@ public class LanguageEntity {
     private String name;
     private String level;
 
-    @ManyToOne
-    @JoinColumn(name="person_id", nullable=false)
-    private PersonEntity personLanguage;
+    @ManyToMany(mappedBy = "languages")
+    private List<PersonEntity> persons = new ArrayList<>();
+
+
 
 }

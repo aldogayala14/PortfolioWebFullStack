@@ -3,6 +3,7 @@ package com.argprog.portfolio.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -14,6 +15,5 @@ public class ProjectDTO {
     private String projectStart;
     private String projectEnd;
     private String url;
-    private PersonDTO personProject;
-    private Set<TechnologyDTO> technologies;
+    private List<PersonDTO> persons;
 }

@@ -3,6 +3,8 @@ package com.argprog.portfolio.dto;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -17,6 +19,11 @@ public class PersonDTO {
     private String occupation;
     private String imageBackgroundHeader;
     private String imageProfile;
-    private ResidenceDTO residence;
+    private Long residenceId;
+    private List<LanguageDTO> languages;
+    private List<WorkExperiencieDTO> experiencies;
+    private List<EducationDTO> educations;
+    private List<TechnologyDTO> technologies;
+    private List<ProjectDTO> projects;
 
 }

@@ -4,6 +4,8 @@ package com.argprog.portfolio.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class EducationDTO {
@@ -16,5 +18,5 @@ public class EducationDTO {
     private double qualification;
     private String careerStart;
     private String careerEnd;
-    private PersonDTO personEducation;
+    private List<PersonDTO> personEducation;
 }

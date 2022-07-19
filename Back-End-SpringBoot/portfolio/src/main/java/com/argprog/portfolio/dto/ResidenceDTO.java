@@ -16,5 +16,4 @@ public class ResidenceDTO {
     private String district;
     private String state;
     private String country;
-    private PersonDTO person;
 }

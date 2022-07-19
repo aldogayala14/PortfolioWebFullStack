@@ -3,6 +3,8 @@ package com.argprog.portfolio.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class WorkExperiencieDTO {
@@ -13,5 +15,5 @@ public class WorkExperiencieDTO {
     private String occupationStart;
     private String occupationEnd;
     private String company;
-    private PersonDTO personExperience;
+    private List<PersonDTO> personExperiences;
 }

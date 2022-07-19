@@ -6,6 +6,9 @@ import com.argprog.portfolio.entity.ResidenceEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ResidenceMapper {
 
@@ -20,7 +23,6 @@ public class ResidenceMapper {
         entity.setCountry(residenceDTO.getCountry());
         entity.setDistrict(residenceDTO.getDistrict());
         entity.setStreetNumbering(residenceDTO.getStreetNumbering());
-        entity.setPerson(personMapper.personDTO2Entity(residenceDTO.getPerson()));
         return entity;
     }
 
@@ -32,7 +34,22 @@ public class ResidenceMapper {
         residenceDTO.setState(entity.getState());
         residenceDTO.setCountry(entity.getCountry());
         residenceDTO.setDistrict(entity.getDistrict());
-        residenceDTO.setPerson(personMapper.personEntity2DTO(entity.getPerson()));
         return residenceDTO;
+    }
+
+    public List<ResidenceDTO> residenceEntity2DTOList(List<ResidenceEntity> entities){
+        List<ResidenceDTO> dtos = new ArrayList<>();
+        for(ResidenceEntity entity : entities){
+            dtos.add(this.residenceEntity2DTO(entity));
+        }
+        return dtos;
+    }
+
+    public List<ResidenceEntity> residenceDTO2EntityList(List<ResidenceDTO> dtos){
+        List<ResidenceEntity> entities = new ArrayList<>();
+        for(ResidenceDTO dto : dtos){
+            entities.add(this.residenceDTO2Entity(dto));
+        }
+        return entities;
     }
 }

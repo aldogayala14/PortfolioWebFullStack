@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "work_experiences")
@@ -23,8 +25,7 @@ public class WorkExperienceEntity {
     private String occupationEnd;
     private String company;
 
-    @ManyToOne
-    @JoinColumn(name="person_id", nullable=false)
-    private PersonEntity personExperience;
+    @ManyToMany(mappedBy = "workExperiences")
+    private List<PersonEntity> persons = new ArrayList<>();
 }
 

@@ -3,6 +3,8 @@ package com.argprog.portfolio.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class TechnologyDTO {
@@ -10,6 +12,5 @@ public class TechnologyDTO {
 
     private String name;
     private int percentageKnowledge;
-    private PersonDTO personTechnology;
-    private ProjectDTO projectTechnology;
+    private List<PersonDTO> persons;
 }

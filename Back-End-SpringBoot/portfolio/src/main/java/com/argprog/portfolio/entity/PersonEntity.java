@@ -6,7 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -36,68 +38,110 @@ public class PersonEntity {
     private String imageBackgroundHeader;
     private String imageProfile;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "residence_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "residence_id", insertable = false,updatable = false)
     private ResidenceEntity residence;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
-
-    @OneToMany(mappedBy = "personExperience")
-    private Set<WorkExperienceEntity> workExperiences = new HashSet<>();
-
-    @OneToMany(mappedBy = "personEducation")
-    private Set<EducationEntity> educations = new HashSet<>();
-
-    @OneToMany(mappedBy = "personTechnology")
-    private Set<TechnologyEntity> technologies = new HashSet<>();
-
-    @OneToMany(mappedBy = "personProject")
-    private Set<ProjectEntity> projects = new HashSet<>();
-
-    @OneToMany(mappedBy = "personLanguage")
-    private Set<LanguageEntity> languages = new HashSet<>();
+    @Column(name = "residence_id", nullable = false)
+    private Long residenceId;
 
 
-    //Add and remove HashSet items
-    private void addWorkExperiencie(WorkExperienceEntity workExperience){
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "experience_person",
+            joinColumns = @JoinColumn (name = "person_id"),
+            inverseJoinColumns =@JoinColumn(name = "experiencie_id"))
+    private List<WorkExperienceEntity> workExperiences = new ArrayList<>();
+
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "education_person",
+            joinColumns = @JoinColumn (name = "person_id"),
+            inverseJoinColumns =@JoinColumn(name = "education_id"))
+    private List<EducationEntity> educations = new ArrayList<>();
+
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "project_person",
+            joinColumns = @JoinColumn (name = "person_id"),
+            inverseJoinColumns =@JoinColumn(name = "project_id"))
+    private List<ProjectEntity> projects = new ArrayList<>();
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "technology_person",
+            joinColumns = @JoinColumn (name = "person_id"),
+            inverseJoinColumns =@JoinColumn(name = "technology_id"))
+    private List<TechnologyEntity> technologies = new ArrayList<>();
+
+
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "language_person",
+            joinColumns = @JoinColumn (name = "person_id"),
+            inverseJoinColumns =@JoinColumn(name = "language_id"))
+    private List<LanguageEntity> languages = new ArrayList<>();
+
+
+    //Add and remove List items
+    public void addWorkExperiencie(WorkExperienceEntity workExperience){
         this.workExperiences.add(workExperience);
     }
 
-    private void removeWorkExperience(WorkExperienceEntity workExperience){
+    public void removeWorkExperience(WorkExperienceEntity workExperience){
         this.workExperiences.remove(workExperience);
     }
 
-    private void addEducation(EducationEntity education){
+    public void addEducation(EducationEntity education){
         this.educations.add(education);
     }
 
-    private void removeEducation(EducationEntity education){
+    public void removeEducation(EducationEntity education){
         this.educations.remove(education);
     }
 
-    private void addTechnology(TechnologyEntity technology){
+    public void addTechnology(TechnologyEntity technology){
         this.technologies.add(technology);
     }
 
-    private void removeTechnology(TechnologyEntity technology){
+    public void removeTechnology(TechnologyEntity technology){
         this.technologies.remove(technology);
     }
 
-    private void addProject(ProjectEntity project){
+    public void addProject(ProjectEntity project){
         this.projects.add(project);
     }
 
-    private void removeProject(ProjectEntity project){
+    public void removeProject(ProjectEntity project){
         this.projects.remove(project);
     }
 
-    private void addLanguage(LanguageEntity language){
+    public void addLanguage(LanguageEntity language){
         this.languages.add(language);
     }
 
-    private void removeLanguage(LanguageEntity language){
+    public void removeLanguage(LanguageEntity language){
         this.languages.remove(language);
     }
 

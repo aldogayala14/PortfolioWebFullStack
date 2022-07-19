@@ -6,7 +6,9 @@ import com.argprog.portfolio.entity.TechnologyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -16,39 +18,42 @@ public class TechnologyMapper {
     private PersonMapper personMapper;
     private ProjectMapper projectMapper;
 
-    public TechnologyEntity technologyDTO2Entity(TechnologyDTO technologyDTO){
+    public TechnologyEntity technologyDTO2Entity(TechnologyDTO technologyDTO, boolean loadPersons){
         TechnologyEntity entity = new TechnologyEntity();
         entity.setName(technologyDTO.getName());
         entity.setPercentageKnowledge(technologyDTO.getPercentageKnowledge());
-        entity.setPersonTechnology(personMapper.personDTO2Entity(technologyDTO.getPersonTechnology()));
-        entity.setProjectTechnology(projectMapper.projectDTO2Entity(technologyDTO.getProjectTechnology()));
+        if(loadPersons){
+            entity.setPersons(personMapper.personDTO2EntityList(technologyDTO.getPersons(), false));
+        }
+
         return entity;
     }
 
-    public TechnologyDTO technologyEntity2DTO(TechnologyEntity entity){
+    public TechnologyDTO technologyEntity2DTO(TechnologyEntity entity, boolean loadPersons){
         TechnologyDTO technologyDTO = new TechnologyDTO();
         technologyDTO.setId(entity.getId());
         technologyDTO.setName(entity.getName());
         technologyDTO.setPercentageKnowledge(entity.getPercentageKnowledge());
-        technologyDTO.setProjectTechnology(projectMapper.projectEntity2DTO(entity.getProjectTechnology()));
-        technologyDTO.setPersonTechnology(personMapper.personEntity2DTO(entity.getPersonTechnology()));
+       if(loadPersons){
+           technologyDTO.setPersons(personMapper.personEntity2DTOList(entity.getPersons(), false));
+       }
         return technologyDTO;
     }
 
 
-    public Set<TechnologyEntity> technologyDTO2EntityList(Set<TechnologyDTO> technologyDTOS){
-        Set<TechnologyEntity> technologyEntities = new HashSet<>();
+    public List<TechnologyEntity> technologyDTO2EntityList(List<TechnologyDTO> technologyDTOS, boolean loadPersons){
+        List<TechnologyEntity> technologyEntities = new ArrayList<>();
         for(TechnologyDTO dto : technologyDTOS){
-            technologyEntities.add(this.technologyDTO2Entity(dto));
+            technologyEntities.add(this.technologyDTO2Entity(dto, loadPersons));
         }
 
         return technologyEntities;
     }
 
-    public Set<TechnologyDTO> technologyEntity2DTOList(Set<TechnologyEntity> technologyEntities){
-        Set<TechnologyDTO> technologyDTOS = new HashSet<>();
+    public List<TechnologyDTO> technologyEntity2DTOList(List<TechnologyEntity> technologyEntities, boolean loadPersons){
+        List<TechnologyDTO> technologyDTOS = new ArrayList<>();
         for(TechnologyEntity entity : technologyEntities){
-            technologyDTOS.add(this.technologyEntity2DTO(entity));
+            technologyDTOS.add(this.technologyEntity2DTO(entity, loadPersons));
         }
 
         return technologyDTOS;

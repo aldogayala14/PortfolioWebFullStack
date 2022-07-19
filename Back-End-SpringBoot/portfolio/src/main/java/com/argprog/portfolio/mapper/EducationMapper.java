@@ -16,7 +16,7 @@ public class EducationMapper {
     @Autowired
     private  PersonMapper personMapper;
 
- public EducationEntity educationDTO2Entity(EducationDTO educationDTO){
+ public EducationEntity educationDTO2Entity(EducationDTO educationDTO, boolean loadPersons){
      EducationEntity entity = new EducationEntity();
      entity.setCareer(educationDTO.getCareer());
      entity.setCareerStart(educationDTO.getCareerStart());
@@ -26,11 +26,14 @@ public class EducationMapper {
      entity.setQualification(educationDTO.getQualification());
      entity.setStatus(educationDTO.getStatus());
      entity.setTitle(educationDTO.getTitle());
-     entity.setPersonEducation(personMapper.personDTO2Entity(educationDTO.getPersonEducation()));
+     if(loadPersons)
+     {
+         entity.setPersons(personMapper.personDTO2EntityList(educationDTO.getPersonEducation(), false));
+     }
      return entity;
  }
 
- public EducationDTO educationEntity2DTO(EducationEntity entity){
+ public EducationDTO educationEntity2DTO(EducationEntity entity, boolean loadPersons){
      EducationDTO educationDTO = new EducationDTO();
      educationDTO.setId(entity.getId());
      educationDTO.setCareer(entity.getCareer());
@@ -41,24 +44,26 @@ public class EducationMapper {
      educationDTO.setImage(entity.getImage());
      educationDTO.setStatus(entity.getStatus());
      educationDTO.setQualification(entity.getQualification());
-     educationDTO.setPersonEducation(personMapper.personEntity2DTO(entity.getPersonEducation()));
+     if(loadPersons){
+         educationDTO.setPersonEducation(personMapper.personEntity2DTOList(entity.getPersons(),false));
+     }
      return educationDTO;
  }
 
 
- public List<EducationDTO> educationEntity2DTOList(List<EducationEntity> entities){
+ public List<EducationDTO> educationEntity2DTOList(List<EducationEntity> entities, boolean loadPersons){
      List<EducationDTO> dtos = new ArrayList<>();
      for(EducationEntity entity : entities){
-         dtos.add(this.educationEntity2DTO(entity));
+         dtos.add(this.educationEntity2DTO(entity, loadPersons));
      }
 
      return dtos;
  }
 
- public List<EducationEntity> educationDTO2EntityList(List<EducationDTO> dtos){
+ public List<EducationEntity> educationDTO2EntityList(List<EducationDTO> dtos, boolean loadPersons){
      List<EducationEntity> entities = new ArrayList<>();
      for(EducationDTO dto : dtos){
-         entities.add(this.educationDTO2Entity(dto));
+         entities.add(this.educationDTO2Entity(dto, loadPersons));
      }
      return entities;
  }

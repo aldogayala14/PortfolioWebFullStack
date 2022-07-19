@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "technologies")
@@ -20,11 +22,7 @@ public class TechnologyEntity {
     private String name;
     private int percentageKnowledge;
 
-    @ManyToOne
-    @JoinColumn(name="person_id", nullable=false)
-    private PersonEntity personTechnology;
+    @ManyToMany(mappedBy = "technologies")
+    private List<PersonEntity> persons = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name="project_id", nullable=false)
-    private ProjectEntity projectTechnology;
 }
