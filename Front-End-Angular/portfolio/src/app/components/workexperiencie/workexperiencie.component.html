@@ -1,0 +1,135 @@
+<section>
+  <article class="educacion">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-10">
+          <h4>Experiencia laboral</h4>
+        </div>
+        <div class="col-2 div_add" *ngIf="isLogged">
+          <i class="fa-solid fa-plus" (click)="openModalAdd();"></i>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ul class="items-list">
+        <li *ngFor="let item of experiencieData; let i = index;">
+          <div class="container-fluid contenedor-educacion">
+            <div class="row">
+              <div class="col-2">
+                <img [src]="item.image" alt="logo-experiencia" class="img-thumbnail img-logo-responsive" />
+              </div>
+              <div class="col-8 descripcion-experiencia">
+                <h5>{{item.occupation}}</h5>
+                <p class="jornada">{{item.company}}</p>
+                <p>Tareas: {{item.observations}}</p>
+                <p><time>{{item.occupationStart}}</time> - <time>{{item.occupationEnd}}</time></p>
+                <p><a [href]="item.url">{{item.url}}</a></p>
+              </div>
+              <div class="col-2 div_deladd" *ngIf="isLogged">
+                <ul>
+                  <li><i class="fa-solid fa-trash" (click)="openModalDelete(item.id)"></i></li>
+                  <li><i class="fa-solid fa-pen" (click)="openModalEdit(
+                    item.id, 
+                    item.occupation, 
+                    item.observations,
+                    item.image,
+                    item.occupationStart,
+                    item.occupationEnd,
+                    item.company)"></i></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+
+<ng-template #contenidoExperiencia let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Cargar experiencia</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="saveExperiencie()" novalidate>
+      <div class="form-group">
+        <label for="recipient-occupation" class="col-form-label">Ocupacion:</label>
+        <input type="text" class="form-control" id="recipient-occupation" [(ngModel)]="occupation" name="occupation"
+          required>
+        <label for="recipient-observations" class="col-form-label">Tareas del puesto:</label>
+        <input type="text" class="form-control" id="recipient-observations" [(ngModel)]="observations"
+          name="observations" required>
+        <label for="recipient-image" class="col-form-label">Imagen:</label>
+        <input type="text" class="form-control" id="recipient-image" [(ngModel)]="image" name="image" required>
+        <label for="recipient-occupationStart" class="col-form-label">Fecha comienzo:</label>
+        <input type="text" class="form-control" id="recipient-occupationStart" [(ngModel)]="occupationStart"
+          name="occupationStart" required>
+        <label for="recipient-occupationEnd" class="col-form-label">Fecha fin:</label>
+        <input type="text" class="form-control" id="occupationEnd" [(ngModel)]="occupationEnd" name="occupationEnd"
+          required>
+        <label for="recipient-company" class="col-form-label">Compañia:</label>
+        <input type="text" class="form-control" id="company" [(ngModel)]="company" name="company" required>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="modal.close()">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close()">Cerrar</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+
+<ng-template #editExperiencia let-modalEdit>
+  <div class="modal-header">
+    <h5 class="modal-title">Editar experiencia</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="editExperiencie()" novalidate>
+      <div class="form-group">
+        <label for="recipient-occupation" class="col-form-label">Ocupacion:</label>
+        <input type="text" class="form-control" id="recipient-occupation" [(ngModel)]="occupation" name="occupation" 
+          required>
+        <label for="recipient-observations" class="col-form-label">Tareas del puesto:</label>
+        <input type="text" class="form-control" id="recipient-observations" [(ngModel)]="observations"
+          name="observations">
+        <label for="recipient-image" class="col-form-label">Imagen:</label>
+        <input type="text" class="form-control" id="recipient-image" [(ngModel)]="image" name="image" required>
+        <label for="recipient-occupationStart" class="col-form-label">Fecha comienzo:</label>
+        <input type="text" class="form-control" id="recipient-occupationStart" [(ngModel)]="occupationStart"
+          name="occupationStart" required>
+        <label for="recipient-occupationEnd" class="col-form-label">Fecha fin:</label>
+        <input type="text" class="form-control" id="occupationEnd" [(ngModel)]="occupationEnd" name="occupationEnd" 
+          required>
+        <label for="recipient-company" class="col-form-label">Compañia:</label>
+        <input type="text" class="form-control" id="company" [(ngModel)]="company" name="company" required>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="modalEdit.close()">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modalEdit" (click)="modalEdit.close()">Cerrar</button>
+      </div>
+    </form>
+
+  </div>  
+</ng-template>
+
+<ng-template #deleteExperiencia let-modalDelete>
+  <div class="modal-header">
+    <h5 class="modal-title">¿Eliminar experiencia?</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm">
+      <div class="form-group">
+        <p>
+          Si elimina un elemento, este se eliminara permanentemente.
+        </p>
+       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" (click)="modalDelete.close(); delete()">Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modalDelete"
+          (click)="modalDelete.close()">Cerrar</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

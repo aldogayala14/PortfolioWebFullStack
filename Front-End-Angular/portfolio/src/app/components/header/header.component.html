@@ -1,0 +1,122 @@
+<header>
+  <div class="row">
+    <div id="logo_arg" class="col-8">
+      <ul>
+        <li><img class="img-logo-desc" src="https://i.ibb.co/7WtxSsn/argprog.jpg" alt="terminal" /></li>
+        <li class="li_arg">Argentina Programa</li>
+      </ul>
+    </div>
+    <div class="col-4" id="login">
+      <ul>
+        <ul>
+          <li><a href="/login"><button type="button" class="btn btn-primary" (click)="login()"
+                *ngIf="!isLogged">Login</button></a></li>
+          <li><a href="/"><button type="button" class="btn btn-primary" (click)="onLoggout()"
+                *ngIf="isLogged">Logout</button></a></li>
+          <li><a href="https://www.linkedin.com/in/aldo-gabriel-ayala/"><img src="https://i.ibb.co/VTMxHVt/in.png"
+                class="img-login" alt="Linkedin" /></a></li>
+          <li><a href="https://github.com/aldogayala14"><img src="https://i.ibb.co/9Hk8dTN/gihub.png" class="img-login"
+                alt="Github" /></a></li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+  <div class="head_group">
+    <div class="col-12 portada">
+      <div class="content-fluid" *ngFor="let item of portfolioData">
+        <img [src]="item.imageProfile" class="rounded-circle foto" alt="Foto perfil" />
+        <div class="editar-perfil" *ngIf="isLogged">
+          <i class="fa-solid fa-pen" (click)="openModalEdit(
+                item.id,
+                item.firstName,
+                item.lastName,
+                item.birthDate,
+                item.email,
+                item.nationality,
+                item.aboutMe,
+                item.occupation,
+                item.imageBackgroundHeader,
+                item.imageProfile
+              )"></i>
+        </div>
+
+      </div>
+    </div>
+    <div class="div-info">
+      <div class="col-8">
+        <div class="descripcion" *ngFor="let item of portfolioData">
+          <p id="nombre_usuario">{{item.firstName + " " + item.lastName}}</p>
+          <p id="prueba">{{item.occupation}}</p>
+          <ul class="info_contacto" *ngFor="let item of residenceData">
+            <li>{{item.district + ", " + item.state + ", " + item.country }}</li>
+            <li class="contact-info"><i class="fa-solid fa-plus" (click)="openModalPlus();"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<ng-template #contenido let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Cambiar información de perfil</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="editPerson()" novalidate>
+      <div class="form-group">
+        <label for="recipient-image" class="col-form-label">Imagen perfil:</label>
+        <input type="text" class="form-control" id="recipient-image" [(ngModel)]="imageProfile" name="imageProfile"
+          required>
+        <label for="recipient-firstname" class="col-form-label">Nombre:</label>
+        <input type="text" class="form-control" id="recipient-firstname" [(ngModel)]="firstName" name="firstName"
+          required>
+        <label for="recipient-lastname" class="col-form-label">Apellido:</label>
+        <input type="text" class="form-control" id="recipient-lastname" [(ngModel)]="lastName" name="lastName" required>
+        <label for="recipient-birthday" class="col-form-label">Cumpleaños:</label>
+        <input type="text" class="form-control" id="recipient-birthday" [(ngModel)]="birthDate" name="birthDate"
+          required>
+        <label for="recipient-email" class="col-form-label">Email:</label>
+        <input type="text" class="form-control" id="recipient-email" [(ngModel)]="email" name="email" required>
+        <label for="recipient-nationality" class="col-form-label">Nacionalidad:</label>
+        <input type="text" class="form-control" id="recipient-nationality" [(ngModel)]="nationality" name="nationality"
+          required>
+        <label for="recipient-occupation" class="col-form-label">Ocupación:</label>
+        <input type="text" class="form-control" id="recipient-occupation" [(ngModel)]="occupation" name="occupation"
+          required>
+        <label for="recipient-aboutme" class="col-form-label">Acerca de mi:</label>
+        <input type="text" class="form-control" id="recipient-aboutme" [(ngModel)]="aboutMe" name="aboutMe" required>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="modal.close()">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close()">Cerrar</button>
+      </div>
+    </form>
+
+  </div>
+</ng-template>
+
+<ng-template #contenidoPlus let-modalplus>
+  <div class="modal-header">
+    <h5 class="modal-title">Información de perfil</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" novalidate>
+      <div class="form-group" *ngFor="let item of portfolioData">    
+        <label for="recipient-birthday" class="col-form-label">Cumpleaños:</label>
+        <input type="text" class="form-control" id="recipient-birthday" [value]="item.birthDate" name="birthDate"
+          readonly>
+        <label for="recipient-email" class="col-form-label">Email:</label>
+        <input type="text" class="form-control" id="recipient-email" [value]="item.email" name="email" readonly>
+        <label for="recipient-nationality" class="col-form-label">Nacionalidad:</label>
+        <input type="text" class="form-control" id="recipient-nationality" [value]="item.nationality" name="nationality"
+          readonly>            
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modalplus.close()">Cerrar</button>
+      </div>
+    </form>
+
+  </div>
+</ng-template>
+

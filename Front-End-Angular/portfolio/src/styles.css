@@ -26,17 +26,17 @@ body{
 }
 
 .foto{
-    height: 170px;
-    width: 170px;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     background-color: crimson;    
-    margin: 370px 2.5em 2.5em; 
+    margin: 330px 2.5em 2.5em; 
     position: absolute;
 }
 
 .editar-perfil{   
     position: absolute;    
-    margin: 500px 13em 5em;
+    margin: 500px 20em 5em;
 }
 
 .edit-category{
@@ -46,9 +46,9 @@ body{
 #nombre_usuario{
     margin-top: 85px;       
     margin-bottom: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif, 'Roboto';
     font-weight: bold;   
-    font-size: 1.5em; 
+    font-size: 1.7em; 
 }
 
 .descripcion{
@@ -131,8 +131,10 @@ body{
 
 .head_group{
     padding-bottom: 3em;
-    background-color: ghostwhite;    
-    border-radius: 1%;
+    background-color: #4C75A3;    
+    border-radius: 1%;  
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif;   
 }
 
 .div_editar{  
@@ -147,15 +149,17 @@ body{
 }
 .acerca{    
     margin-top: 1em;
-    background-color: ghostwhite;    
+    background-color: #4C75A3;    
     border-radius: 1%;
-    padding: 1em;
+    padding: 1em;   
+    font-weight:bold; 
+    font-family: Arial, Helvetica, sans-serif;   
 }
 
 .experiencia{
     margin-top: 1em;
-    background-color: ghostwhite;    
-    border-radius: 1%;
+    background-color: #b2b9e1;    
+    border-radius: 10%;
     padding: 1em;
 }
 
@@ -197,9 +201,10 @@ body{
 }
 
 
+
 .educacion{
     margin-top: 1em;
-    background-color: ghostwhite;    
+    background-color: #f5f5f5;    
     border-radius: 1%;
     padding: 1em;
 }
@@ -211,7 +216,7 @@ body{
 
 .div-footer{
     margin-top: 1em;
-    background-color: ghostwhite;    
+    background-color: #4C75A3;    
     border-radius: 1%;
     padding: 1em;   
     text-align: center;
@@ -298,4 +303,37 @@ body{
     background-color: ghostwhite;    
     border-radius: 1%;
     padding: 1em;
+}
+
+.items-list li{
+    list-style-type: none;
+}
+
+.div-container{
+    margin: 1em;
+}
+
+.div-info{
+    margin-top:9em;
+    margin-left: 3em;
+}
+
+.contact-info{
+    margin-left: 1em;
+}
+.modalFooter{
+    float: right;
+}
+
+
+.div-editskill ul{
+    text-align: center;
+    margin-left: 2em;
+}
+.div-editskill ul li{
+    list-style-type: none;    
+    float:left;
+    margin-top: 0px;
+    margin-left: 1em;
+   margin-right: 1em;
 }

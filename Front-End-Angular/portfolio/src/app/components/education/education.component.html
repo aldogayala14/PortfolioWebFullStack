@@ -1,0 +1,149 @@
+<section>
+  <article class="educacion">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-10">
+          <h4>Educación</h4>
+        </div>
+        <div class="col-2 div_add" *ngIf="isLogged">
+          <i class="fa-solid fa-plus" (click)="openModalAdd();"></i>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ul class="items-list">
+        <li *ngFor="let education of educationData; let i = index;">        
+          <div class="container-fluid contenedor-educacion">
+            <div class="row">
+              <div class="col-2">
+                <img
+                  [src]="education.image"
+                  alt="logo-educacion" class="img-thumbnail img-logo-responsive" />
+
+              </div>
+              <div class="col-8 descripcion-experiencia">
+                <h5>{{education.title}}</h5>
+                <p class="jornada">{{education.college}}</p>
+                <p>Estado: {{education.status}}</p>
+                <p>Calificacion: {{education.qualification}}</p>
+                <p><time>{{education.careerStart}}</time> - <time>{{education.careerEnd}}</time></p>
+              </div>
+              <div class="col-2 div_deladd" *ngIf="isLogged">
+                <ul>
+                  <li><i class="fa-solid fa-trash" (click)="openModalDelete(education.id)"></i></li>
+                  <li><i class="fa-solid fa-pen" (click)="openModalEdit(education.id,
+                    education.college,
+                    education.title,
+                    education.image,
+                    education.career,
+                    education.staus,
+                    education.qualification,
+                    education.careerStart,
+                    education.careerEnd)"></i></li>
+                </ul>
+              </div>
+            </div>
+          </div>        
+        </li>
+      </ul>
+    </div>
+
+  </article>
+</section>
+
+
+<ng-template #contenidoEducation let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Cargar educacion</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="saveEducation()" novalidate>
+      <div class="form-group">
+        <label for="recipient-college" class="col-form-label">Institución:</label>
+        <input type="text" class="form-control" id="recipient-college" [(ngModel)]="college" name="college"
+          required>
+        <label for="recipient-title" class="col-form-label">Titulo:</label>
+        <input type="text" class="form-control" id="recipient-title" [(ngModel)]="title"
+          name="title" required>
+        <label for="recipient-image" class="col-form-label">Imagen:</label>
+        <input type="text" class="form-control" id="recipient-image" [(ngModel)]="image" name="image" required>
+        <label for="recipient-career" class="col-form-label">Carrera:</label>
+        <input type="text" class="form-control" id="recipient-career" [(ngModel)]="career"
+          name="career" required>
+        <label for="recipient-qualification" class="col-form-label">Calificación:</label>
+        <input type="text" class="form-control" id="recipient-qualification" [(ngModel)]="qualification" name="qualification"
+          required>
+          <label for="recipient-careerStar" class="col-form-label">Fecha inicion:</label>
+        <input type="text" class="form-control" id="recipient-careerStar" [(ngModel)]="careerStart" name="careerstart"
+          required>
+          <label for="recipient-careerEnd" class="col-form-label">Fecha fin:</label>
+        <input type="text" class="form-control" id="careerEnd" [(ngModel)]="careerEnd" name="careerEnd"
+          required>        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="modal.close()">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modal.close()">Cerrar</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+
+<ng-template #editEducationForm let-modalEdit>
+  <div class="modal-header">
+    <h5 class="modal-title">Editar educacion</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="editEducation()" novalidate>
+      <div class="form-group">
+        <label for="recipient-college" class="col-form-label">Institución:</label>
+        <input type="text" class="form-control" id="college" [(ngModel)]="college" name="college"
+          required>
+        <label for="recipient-title" class="col-form-label">Titulo:</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="title"
+          name="title" required>
+        <label for="recipient-image" class="col-form-label">Imagen:</label>
+        <input type="text" class="form-control" id="image" [(ngModel)]="image" name="image" required>
+        <label for="recipient-career" class="col-form-label">Carrera:</label>
+        <input type="text" class="form-control" id="career" [(ngModel)]="career"
+          name="career" required>
+        <label for="recipient-qualification" class="col-form-label">Calificación:</label>
+        <input type="text" class="form-control" id="qualification" [(ngModel)]="qualification" name="qualification"
+          required>
+          <label for="recipient-careerStar" class="col-form-label">Fecha inicion:</label>
+        <input type="text" class="form-control" id="careerStar" [(ngModel)]="careerStart" name="careerstart"
+          required>
+          <label for="recipient-careerEnd" class="col-form-label">Fecha fin:</label>
+        <input type="text" class="form-control" id="careerEnd" [(ngModel)]="careerEnd" name="careerEnd"
+          required>        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="modalEdit.close()">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalEdit.close()">Cerrar</button>
+      </div>
+    </form>
+
+  </div>  
+</ng-template>
+
+<ng-template #deleteEducation let-modalDelete>
+  <div class="modal-header">
+    <h5 class="modal-title">¿Eliminar educacion?</h5>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm">
+      <div class="form-group">
+        <p>
+          Si elimina un elemento, este se eliminara permanentemente.
+        </p>
+       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" (click)="modalDelete.close(); delete()">Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modalDelete"
+          (click)="modalDelete.close()">Cerrar</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+

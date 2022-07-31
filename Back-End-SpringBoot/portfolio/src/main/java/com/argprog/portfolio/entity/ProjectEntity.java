@@ -3,6 +3,8 @@ package com.argprog.portfolio.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.Set;
 @Table(name = "projects")
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE projects SET deleted = true WHERE id=?")
+@Where(clause = "deleted = false")
 public class ProjectEntity {
 
     @Id
@@ -29,6 +33,8 @@ public class ProjectEntity {
 
     @ManyToMany(mappedBy = "projects")
     private List<PersonEntity> persons = new ArrayList<>();
+
+    private boolean deleted = Boolean.FALSE;
 
 
 }

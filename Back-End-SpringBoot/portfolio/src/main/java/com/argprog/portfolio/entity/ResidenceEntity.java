@@ -2,6 +2,8 @@ package com.argprog.portfolio.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "residences")
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE residences SET deleted = true WHERE id=?")
+@Where(clause = "deleted = false")
 public class ResidenceEntity {
     @Id
     @Column
@@ -24,4 +28,6 @@ public class ResidenceEntity {
     @OneToOne(mappedBy = "residence")
     private PersonEntity person;
 
+
+    private boolean deleted = Boolean.FALSE;
 }
