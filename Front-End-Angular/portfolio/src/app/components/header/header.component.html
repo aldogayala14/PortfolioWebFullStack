@@ -103,7 +103,7 @@
   <div class="modal-body">
     <form #f="ngForm" novalidate>
       <div class="form-group" *ngFor="let item of portfolioData">    
-        <label for="recipient-birthday" class="col-form-label">Cumpleaños:</label>
+        <label for="recipient-birthday" class="col-form-label">Fecha nacimiento:</label>
         <input type="text" class="form-control" id="recipient-birthday" [value]="item.birthDate" name="birthDate"
           readonly>
         <label for="recipient-email" class="col-form-label">Email:</label>

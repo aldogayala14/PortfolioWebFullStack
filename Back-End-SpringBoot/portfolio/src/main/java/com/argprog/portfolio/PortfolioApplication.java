@@ -18,14 +18,14 @@ public class PortfolioApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/person/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/education/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/language/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/project/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/residence/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/technology/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
-				registry.addMapping("/api/workexperiencie/**").allowedOrigins("http://localhost:4200").allowedMethods("*");
+				registry.addMapping("/api/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/person/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/education/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/language/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/project/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/residence/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/technology/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
+				registry.addMapping("/api/workexperiencie/**").allowedOrigins("https://portfolio-1d30e.web.app/").allowedMethods("*");
 			}
 		};
 	}
